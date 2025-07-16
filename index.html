@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benign Growth Rate Estimator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="calculator-container">
+        <h1>Benign Growth Rate Estimator</h1>
+        <p class="subtitle">Evidence-based growth projections for gynecological conditions</p>
+        
+        <div class="growth-type-selector">
+            <label style="font-size: 16px; margin-bottom: 15px; display: block;">Select Growth Type:</label>
+            <div class="growth-type-card" data-type="endometrioma">
+                <div class="growth-type-title">Endometrioma</div>
+                <div class="growth-type-description">Ovarian endometriotic cysts, often called "chocolate cysts"</div>
+            </div>
+            <div class="growth-type-card" data-type="fibroid">
+                <div class="growth-type-title">Uterine Fibroid</div>
+                <div class="growth-type-description">Benign smooth muscle tumors of the uterus (leiomyomas)</div>
+            </div>
+            <div class="growth-type-card" data-type="simple-cyst">
+                <div class="growth-type-title">Ovarian Simple Cyst</div>
+                <div class="growth-type-description">Fluid-filled sacs with thin walls and no solid components</div>
+            </div>
+            <div class="growth-type-card" data-type="complex-cyst">
+                <div class="growth-type-title">Ovarian Complex Cyst</div>
+                <div class="growth-type-description">Cysts with septations, solid components, or dermoid features</div>
+            </div>
+        </div>
+
+        <form id="calculatorForm" style="display: none;">
+            <div id="commonInputs" class="input-section">
+                <div class="form-group">
+                    <label for="currentSize">Current Size (cm)</label>
+                    <input type="number" id="currentSize" min="0.1" max="30" step="0.1" required placeholder="Enter size in centimeters">
+                </div>
+
+                <div class="form-group">
+                    <label for="age">Patient Age (years)</label>
+                    <input type="number" id="age" min="15" max="90" required placeholder="e.g., 32">
+                </div>
+
+                <div class="form-group">
+                    <label for="timeframe">Projection Timeframe</label>
+                    <select id="timeframe" required>
+                        <option value="3">3 months</option>
+                        <option value="6">6 months</option>
+                        <option value="12" selected>1 year</option>
+                        <option value="24">2 years</option>
+                        <option value="36">3 years</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Dynamic inputs will be inserted here -->
+            <div id="dynamic-inputs"></div>
+
+            <div class="input-section">
+                <div class="form-group">
+                    <label>Currently Pregnant?</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="pregnantNo" name="pregnant" value="no" checked>
+                            <label for="pregnantNo">No</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="pregnantYes" name="pregnant" value="yes">
+                            <label for="pregnantYes">Yes</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 15px; margin-top: 30px;">
+                <button type="button" class="back-btn" onclick="backToSelection()">← Back to Selection</button>
+                <button type="submit" class="calculate-btn">Calculate Growth Projection</button>
+            </div>
+        </form>
+
+        <div id="results" class="results">
+            <h2>Growth Projection Results</h2>
+            
+            <div class="result-item">
+                <div class="result-label">Growth Type</div>
+                <div class="result-value" id="growthTypeResult"></div>
+            </div>
+            
+            <div class="result-item">
+                <div class="result-label">Expected Size Change</div>
+                <div class="result-value" id="sizeChange"></div>
+            </div>
+
+            <div class="result-item">
+                <div class="result-label">Projected Size</div>
+                <div class="result-value" id="projectedSize"></div>
+            </div>
+
+            <div class="result-item">
+                <div class="result-label">Monthly Growth Rate</div>
+                <div class="result-value" id="monthlyRate"></div>
+            </div>
+
+            <div class="result-item">
+                <div class="result-label">Behavior Pattern</div>
+                <div class="result-value" id="behaviorPattern"></div>
+            </div>
+
+            <div class="result-item" id="resolutionChance" style="display: none;">
+                <div class="result-label">Chance of Resolution</div>
+                <div class="result-value" id="resolutionRate"></div>
+            </div>
+
+            <div class="growth-visual">
+                <div class="size-bar">
+                    <div class="current-size" id="currentBar"></div>
+                    <div class="projected-size" id="projectedBar"></div>
+                </div>
+                <div class="size-labels">
+                    <span>Current Size</span>
+                    <span>Projected Size</span>
+                </div>
+            </div>
+
+            <div id="recommendations" class="result-item info">
+                <div class="result-label">Clinical Recommendations</div>
+                <div class="result-value" id="recommendText"></div>
+            </div>
+
+            <div id="warnings" class="result-item warning" style="display: none;">
+                <div class="result-label">Important Considerations</div>
+                <div class="result-value" id="warningText"></div>
+            </div>
+        </div>
+
+        <div class="disclaimer">
+            <strong>Disclaimer:</strong> This calculator provides estimates based on published research averages. Individual results vary significantly. Always consult with your healthcare provider for personalized medical advice and treatment decisions. This tool is for educational purposes only and does not replace professional medical judgment.
+            <br><br>
+            <em>Version 5.0: Enhanced with comprehensive research data from "Growth Rates of Benign Gynecologic Masses" and "Endometrioma Growth and Recurrence Patterns" studies. Features Li et al. predictive model (82.5% accuracy, AUC 0.825), evidence-based growth patterns (47% decrease, 31% stable, 22% increase for endometriomas), precise treatment-specific rates (continuous OCP: 0.5 cm/year, cyclic OCP: 0.62 cm/year, untreated: 1 cm/year), recurrence risk stratification (odds ratio 3.245 for previous history), concurrent endometriosis assessment (DIE, adenomyosis, bilateral disease), age-specific algorithms (relative risk 0.764 per year), and validated clinical thresholds. Multi-time projections (3-36 months), IOTA Simple Rules, O-RADS risk stratification, and enhanced laboratory integration (FSH, LH, LDL, total cholesterol).</em>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
