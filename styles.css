@@ -216,6 +216,56 @@ input[type="radio"] {
     text-align: center;
 }
 
+.version-details {
+    margin-top: 12px;
+    text-align: left;
+}
+
+.version-details summary {
+    cursor: pointer;
+    font-weight: 600;
+    font-style: italic;
+    color: #8b5a2b;
+    padding: 8px 12px;
+    background: rgba(139, 90, 43, 0.1);
+    border-radius: 6px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.version-details summary::-webkit-details-marker {
+    display: none;
+}
+
+.version-details summary::before {
+    content: '▶';
+    font-size: 10px;
+    transition: transform 0.2s ease;
+}
+
+.version-details[open] summary::before {
+    transform: rotate(90deg);
+}
+
+.version-details summary:hover {
+    background: rgba(139, 90, 43, 0.18);
+}
+
+.version-content {
+    margin-top: 12px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 6px;
+    font-style: italic;
+    line-height: 1.6;
+    text-align: justify;
+    animation: fadeIn 0.3s ease-out;
+}
+
 .growth-visual {
     margin: 20px 0;
     text-align: center;
@@ -517,4 +567,203 @@ input[type="checkbox"] {
 .summary-content strong {
     color: #ffd700;
     font-weight: 600;
+}
+
+/* Export/Print Buttons */
+.export-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.export-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(72, 187, 120, 0.3);
+}
+
+.export-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(72, 187, 120, 0.4);
+}
+
+.export-btn.print-btn {
+    background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+    box-shadow: 0 4px 12px rgba(66, 153, 225, 0.3);
+}
+
+.export-btn.print-btn:hover {
+    box-shadow: 0 6px 16px rgba(66, 153, 225, 0.4);
+}
+
+/* Confidence Interval Styling */
+#confidenceIntervalDisplay {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border-left-color: #f59e0b;
+}
+
+#confidenceIntervalDisplay .result-label {
+    color: #92400e;
+}
+
+#confidenceIntervalDisplay .result-value {
+    color: #78350f;
+    font-weight: 600;
+}
+
+/* ROMA/RMI Score Styling */
+#romaScoreDisplay, #rmiScoreDisplay {
+    background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+    border-left-color: #ec4899;
+}
+
+#romaScoreDisplay .result-label,
+#rmiScoreDisplay .result-label {
+    color: #9d174d;
+}
+
+#romaScoreDisplay .result-value,
+#rmiScoreDisplay .result-value {
+    color: #831843;
+    font-weight: 600;
+}
+
+/* FIGO Classification Styling */
+#figoClassDisplay {
+    background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+    border-left-color: #6366f1;
+}
+
+#figoClassDisplay .result-label {
+    color: #3730a3;
+}
+
+#figoClassDisplay .result-value {
+    color: #312e81;
+    font-weight: 600;
+}
+
+/* References Section Styling */
+#referencesDisplay {
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    border-left-color: #22c55e;
+    font-size: 13px;
+}
+
+#referencesDisplay .result-label {
+    color: #166534;
+    font-size: 14px;
+}
+
+#referencesDisplay .result-value {
+    color: #15803d;
+    line-height: 1.6;
+}
+
+/* Enhanced Input Sections */
+.tumor-markers-section,
+.iota-section,
+.figo-section {
+    margin-top: 20px;
+    padding: 15px;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+}
+
+.tumor-markers-section h4,
+.iota-section h4,
+.figo-section h4 {
+    color: #475569;
+    font-size: 14px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tumor-markers-section h4::before {
+    content: '🧪';
+}
+
+.iota-section h4::before {
+    content: '🔬';
+}
+
+.figo-section h4::before {
+    content: '📋';
+}
+
+/* Risk Badge Styling */
+.risk-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.risk-badge.low {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.risk-badge.intermediate {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.risk-badge.high {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background: white;
+        padding: 0;
+    }
+    
+    .calculator-container {
+        box-shadow: none;
+        max-width: 100%;
+        padding: 20px;
+    }
+    
+    .growth-type-selector,
+    #calculatorForm,
+    .export-buttons,
+    .back-btn,
+    .calculate-btn {
+        display: none !important;
+    }
+    
+    .results {
+        display: block !important;
+        background: white;
+        border: 1px solid #ddd;
+    }
+    
+    .result-item {
+        break-inside: avoid;
+    }
+    
+    .disclaimer {
+        font-size: 10px;
+        margin-top: 20px;
+    }
 } 

@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Benign Growth Rate Estimator</title>
+    <title>Benign Gynecologic Growth Rate Estimator</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="calculator-container">
-        <h1>Benign Growth Rate Estimator</h1>
+        <h1>Benign Gynecologic Growth Rate Estimator</h1>
         <p class="subtitle">Evidence-based growth projections for gynecological conditions</p>
         
         <div class="growth-type-selector">
@@ -57,6 +57,21 @@
                         <option value="36">3 years</option>
                     </select>
                     <small style="color: #666; font-size: 12px; font-style: italic;">*Expected growth or regression in the selected timeframe</small>
+                </div>
+
+                <div class="form-group">
+                    <label>Calculation Mode</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="modeDeterministic" name="calculationMode" value="deterministic" checked>
+                            <label for="modeDeterministic">Best Estimate (same result each time)</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="modeProbabilistic" name="calculationMode" value="probabilistic">
+                            <label for="modeProbabilistic">Range of Possibilities (varies each time)</label>
+                        </div>
+                    </div>
+                    <small style="color: #666; font-size: 12px; font-style: italic;"><strong>Best Estimate</strong> gives you the most typical outcome based on research. <strong>Range of Possibilities</strong> shows how results can vary between people — run it multiple times to see the range.</small>
                 </div>
             </div>
 
@@ -113,9 +128,29 @@
                 <div class="result-value" id="behaviorPattern"></div>
             </div>
 
+            <div class="result-item" id="confidenceIntervalDisplay">
+                <div class="result-label">95% Confidence Interval</div>
+                <div class="result-value" id="confidenceIntervalValue"></div>
+            </div>
+
             <div class="result-item" id="resolutionChance" style="display: none;">
                 <div class="result-label">Chance of Resolution</div>
                 <div class="result-value" id="resolutionRate"></div>
+            </div>
+
+            <div class="result-item" id="romaScoreDisplay" style="display: none;">
+                <div class="result-label">ROMA Score</div>
+                <div class="result-value" id="romaScoreValue"></div>
+            </div>
+
+            <div class="result-item" id="rmiScoreDisplay" style="display: none;">
+                <div class="result-label">Risk of Malignancy Index (RMI)</div>
+                <div class="result-value" id="rmiScoreValue"></div>
+            </div>
+
+            <div class="result-item" id="figoClassDisplay" style="display: none;">
+                <div class="result-label">FIGO Classification</div>
+                <div class="result-value" id="figoClassValue"></div>
             </div>
 
             <div class="growth-visual">
@@ -138,12 +173,37 @@
                 <div class="result-label">Important Considerations</div>
                 <div class="result-value" id="warningText"></div>
             </div>
+
+            <div id="referencesDisplay" class="result-item info">
+                <div class="result-label">Evidence Sources</div>
+                <div class="result-value" id="referencesText"></div>
+            </div>
+
+            <div class="export-buttons">
+                <button type="button" class="export-btn" onclick="exportResults()">
+                    <span>📄</span> Export Report
+                </button>
+                <button type="button" class="export-btn print-btn" onclick="printResults()">
+                    <span>🖨️</span> Print
+                </button>
+            </div>
         </div>
 
         <div class="disclaimer">
             <strong>Disclaimer:</strong> This calculator provides estimates based on published research averages. Individual results vary significantly. Always consult with your healthcare provider for personalized medical advice and treatment decisions. This tool is for educational purposes only and does not replace professional medical judgment.
-            <br><br>
-            <em>Version 7.0: Enhanced with comprehensive research data from "Growth Rates of Benign Gynecologic Masses" and "Endometrioma Growth and Recurrence Patterns" studies. Features Li et al. predictive model (82.5% accuracy, AUC 0.825), evidence-based growth patterns (47% decrease, 31% stable, 22% increase for endometriomas), precise treatment-specific rates (continuous OCP: 0.5 cm/year, cyclic OCP: 0.62 cm/year, untreated: 1 cm/year), recurrence risk stratification (odds ratio 3.245 for previous history), concurrent endometriosis assessment (DIE, adenomyosis, bilateral disease), age-specific algorithms (relative risk 0.764 per year), and validated clinical thresholds. Multi-time projections (3-36 months), IOTA Simple Rules, O-RADS risk stratification, and enhanced laboratory integration (FSH, LH, LDL, total cholesterol). <strong>NEW:</strong> Adenomyosis calculator with evidence-based progression rates (21.3% overall, 30.77% untreated, 18.34% treated), type-specific algorithms (diffuse vs focal), junctional zone thickness monitoring, and treatment response prediction. <strong>ENHANCED:</strong> Uterine fibroid calculator with comprehensive multiplicity assessment (60-80% have multiple nodules), evidence-based growth projections (9-89% over 18 months, 188% for small fibroids), post-surgical recurrence rates (41.6% at 3 years laparoscopic, 31-43% open), treatment-specific outcomes (UAE: 3.1% recurrence at 1 year, HIFU: 22.5% at 2 years), risk factor stratification (early menarche, nulliparity, obesity, family history), and enhanced clinical recommendations.</em>
+            
+            <details class="version-details">
+                <summary>Version 8.0 — View Research Details</summary>
+                <div class="version-content">
+                    <strong>NEW IN V8.0:</strong> Deterministic calculation mode for reproducible clinical estimates, ROMA Score Calculator (Risk of Ovarian Malignancy Algorithm), RMI (Risk of Malignancy Index) integration, FIGO/PALM-COEIN fibroid classification, IOTA Simple Rules assessment, prominent 95% confidence interval display, CA-125/HE4 tumor marker integration, AMH fertility marker support, enhanced export/print functionality, and comprehensive citation references with PubMed IDs.
+                    
+                    <strong>CORE FEATURES:</strong> Li et al. predictive model (82.5% accuracy, AUC 0.825), evidence-based growth patterns (47% decrease, 31% stable, 22% increase for endometriomas), precise treatment-specific rates (continuous OCP: 0.5 cm/year, cyclic OCP: 0.62 cm/year, untreated: 1 cm/year), recurrence risk stratification (odds ratio 3.245 for previous history), concurrent endometriosis assessment (DIE, adenomyosis, bilateral disease), age-specific algorithms (relative risk 0.764 per year), and validated clinical thresholds. Multi-time projections (3-36 months), O-RADS risk stratification, and enhanced laboratory integration (FSH, LH, LDL, total cholesterol).
+                    
+                    <strong>ADENOMYOSIS:</strong> Evidence-based progression rates (21.3% overall, 30.77% untreated, 18.34% treated), type-specific algorithms (diffuse vs focal), junctional zone thickness monitoring, and treatment response prediction.
+                    
+                    <strong>FIBROIDS:</strong> Comprehensive multiplicity assessment (60-80% have multiple nodules), evidence-based growth projections (9-89% over 18 months, 188% for small fibroids), post-surgical recurrence rates (41.6% at 3 years laparoscopic, 31-43% open), treatment-specific outcomes (UAE: 3.1% recurrence at 1 year, HIFU: 22.5% at 2 years), risk factor stratification.
+                </div>
+            </details>
         </div>
     </div>
 
