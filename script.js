@@ -2607,15 +2607,21 @@ function displayResults(data, results, multiTimeResults) {
         `${results.monthlyRate > 0 ? '+' : ''}${results.monthlyRate.toFixed(2)} cm/month`;
     document.getElementById('behaviorPattern').textContent = results.behavior;
     
-    // Show confidence interval prominently
+    // Show confidence interval with layman's explanation
     if (results.confidenceInterval !== undefined) {
         const ciDisplay = document.getElementById('confidenceIntervalDisplay');
         const ciValue = document.getElementById('confidenceIntervalValue');
+        const ciExplanation = document.getElementById('confidenceIntervalExplanation');
         if (ciDisplay && ciValue) {
             ciDisplay.style.display = 'block';
             const lowerBound = Math.max(0, results.finalSize - results.confidenceInterval);
             const upperBound = results.finalSize + results.confidenceInterval;
-            ciValue.textContent = `${lowerBound.toFixed(1)} - ${upperBound.toFixed(1)} cm (±${results.confidenceInterval.toFixed(2)} cm)`;
+            ciValue.textContent = `${lowerBound.toFixed(1)} - ${upperBound.toFixed(1)} cm`;
+            
+            // Add layman's explanation
+            if (ciExplanation) {
+                ciExplanation.innerHTML = `<strong>What does this mean?</strong> Based on research, there's a 95% chance your actual size will fall somewhere in this range. The estimate above (${results.finalSize.toFixed(1)} cm) is the most likely outcome, but everyone's body is different — your result could be anywhere between ${lowerBound.toFixed(1)} cm and ${upperBound.toFixed(1)} cm.`;
+            }
         }
     }
     

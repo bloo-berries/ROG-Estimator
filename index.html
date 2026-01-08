@@ -103,35 +103,41 @@
         <div id="results" class="results">
             <h2>Growth Projection Results</h2>
             
-            <div class="result-item">
-                <div class="result-label">Growth Type</div>
-                <div class="result-value" id="growthTypeResult"></div>
-            </div>
-            
-            <div class="result-item">
-                <div class="result-label">Expected Size Change</div>
-                <div class="result-value" id="sizeChange"></div>
-            </div>
-
-            <div class="result-item">
+            <div class="result-item primary-result">
                 <div class="result-label">Projected Size</div>
                 <div class="result-value" id="projectedSize"></div>
             </div>
 
-            <div class="result-item">
-                <div class="result-label">Monthly Growth Rate</div>
-                <div class="result-value" id="monthlyRate"></div>
-            </div>
-
-            <div class="result-item">
+            <div class="result-item primary-result">
                 <div class="result-label">Behavior Pattern</div>
                 <div class="result-value" id="behaviorPattern"></div>
             </div>
 
             <div class="result-item" id="confidenceIntervalDisplay">
-                <div class="result-label">95% Confidence Interval</div>
+                <div class="result-label">Possible Size Range</div>
                 <div class="result-value" id="confidenceIntervalValue"></div>
+                <div class="result-explanation" id="confidenceIntervalExplanation"></div>
             </div>
+
+            <details class="additional-details">
+                <summary>View Additional Details</summary>
+                <div class="details-content">
+                    <div class="result-item">
+                        <div class="result-label">Growth Type</div>
+                        <div class="result-value" id="growthTypeResult"></div>
+                    </div>
+                    
+                    <div class="result-item">
+                        <div class="result-label">Expected Size Change</div>
+                        <div class="result-value" id="sizeChange"></div>
+                    </div>
+
+                    <div class="result-item">
+                        <div class="result-label">Monthly Growth Rate</div>
+                        <div class="result-value" id="monthlyRate"></div>
+                    </div>
+                </div>
+            </details>
 
             <div class="result-item" id="resolutionChance" style="display: none;">
                 <div class="result-label">Chance of Resolution</div>
