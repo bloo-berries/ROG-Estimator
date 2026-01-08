@@ -86,10 +86,10 @@ const scientificReferences = {
             citation: 'The Value of Adenomyosis Type in Clinical Assessment. J Clin Med. 2021',
             values: 'Diffuse: 88% of cases; Nodular/focal: 12%; Different clinical presentations'
         },
-        naturalHistory: {
+        musaConsensus: {
             pmid: '30850322',
             citation: 'Van den Bosch T, et al. MUSA consensus on adenomyosis. Ultrasound Obstet Gynecol. 2019',
-            values: 'Standardized ultrasound classification; Direct and indirect features'
+            values: 'Direct features: myometrial cysts, hyperechoic islands, fan-shaped shadowing, echogenic lines. Indirect: asymmetrical thickening, globular uterus'
         },
         jzThickness: {
             pmid: '25681495',
@@ -1601,6 +1601,49 @@ const growthCalculators = {
             // Less relevant for focal type
         }
         
+        // ============================================================================
+        // MUSA ULTRASOUND FEATURES ASSESSMENT
+        // Per Van den Bosch et al. 2019 Consensus (PMID: 30850322)
+        // ============================================================================
+        
+        let musaDirectCount = 0;
+        let musaIndirectCount = 0;
+        let musaScore = 0;
+        
+        if (data.musaFeatures) {
+            // Count direct features (more specific for adenomyosis)
+            if (data.musaFeatures.myometrialCysts) { musaDirectCount++; musaScore += 2; }
+            if (data.musaFeatures.hyperechoicIslands) { musaDirectCount++; musaScore += 2; }
+            if (data.musaFeatures.fanShadowing) { musaDirectCount++; musaScore += 1; }
+            if (data.musaFeatures.echogenicLines) { musaDirectCount++; musaScore += 2; }
+            if (data.musaFeatures.translesionalVascularity) { musaDirectCount++; musaScore += 2; }
+            if (data.musaFeatures.irregularJZ) { musaDirectCount++; musaScore += 1; }
+            if (data.musaFeatures.interruptedJZ) { musaDirectCount++; musaScore += 1; }
+            
+            // Count indirect features (less specific but supportive)
+            if (data.musaFeatures.asymmetricThickening) { musaIndirectCount++; musaScore += 1; }
+            if (data.musaFeatures.globularUterus) { musaIndirectCount++; musaScore += 1; }
+            
+            // More ultrasound features = more extensive disease = higher progression
+            if (musaDirectCount >= 4) {
+                baseGrowthRate *= 1.3; // Extensive disease
+                progressionProbability *= 1.4;
+            } else if (musaDirectCount >= 2) {
+                baseGrowthRate *= 1.15; // Moderate disease
+                progressionProbability *= 1.2;
+            }
+            
+            // Translesional vascularity indicates active disease
+            if (data.musaFeatures.translesionalVascularity) {
+                baseGrowthRate *= 1.2; // Active vascularized lesions grow faster
+            }
+            
+            // Interrupted JZ is more severe than irregular JZ
+            if (data.musaFeatures.interruptedJZ) {
+                progressionProbability *= 1.15;
+            }
+        }
+        
         // Calculate volume and size changes
         let currentVolume, finalVolume, finalSize, totalGrowth, monthlyRate;
         
@@ -1679,6 +1722,14 @@ const growthCalculators = {
                 : data.adenomyosisType === 'focal'
                 ? 'Focal adenomyosis (12% of cases): Localized adenomyoma with variable expansion. Location within myometrium is critical - outer myometrium lesions have highest progression risk.'
                 : 'Adenomyosis type not specified - results may be less accurate.',
+            // MUSA Assessment
+            musaAssessment: {
+                directFeatureCount: musaDirectCount,
+                indirectFeatureCount: musaIndirectCount,
+                totalScore: musaScore,
+                severity: musaScore >= 8 ? 'Extensive' : musaScore >= 4 ? 'Moderate' : musaScore >= 1 ? 'Mild' : 'Minimal',
+                hasActiveVascularity: data.musaFeatures?.translesionalVascularity || false
+            },
             riskFactors: {
                 focalOuterMyometrium: data.adenomyosisType === 'focal' && data.lesionLocation === 'outer',
                 severeSymptoms: data.symptomSeverity === 'severe',
@@ -2118,42 +2169,98 @@ const dynamicInputConfigs = {
             <label for="adenomyosisType">Adenomyosis Type</label>
             <select id="adenomyosisType" required>
                 <option value="">Select adenomyosis type</option>
-                <option value="diffuse">Diffuse adenomyosis (66.7% of cases)</option>
-                <option value="focal">Focal adenomyosis (33.3% of cases)</option>
+                <option value="diffuse">Diffuse adenomyosis (88% of cases) - widespread infiltration</option>
+                <option value="focal">Focal/Nodular adenomyosis (12% of cases) - localized lesions</option>
             </select>
+            <small style="color: #666; font-size: 12px;">These types have different growth mechanisms and progression patterns</small>
         </div>
 
         <div class="form-group">
             <label for="jzThickness">Junctional Zone Thickness (mm)</label>
-            <input type="number" id="jzThickness" min="7" max="37" step="0.5" placeholder="e.g., 16" required>
-            <small style="color: #666; font-size: 12px;">Normal: 7-37mm, Diagnostic threshold: ≥12mm</small>
+            <input type="number" id="jzThickness" min="7" max="50" step="0.5" placeholder="e.g., 16" required>
+            <small style="color: #666; font-size: 12px;">Diagnostic threshold: ≥12mm. Primary progression marker for diffuse type.</small>
         </div>
 
         <div class="form-group">
             <label for="uterineVolume">Uterine Volume (cm³)</label>
-            <input type="number" id="uterineVolume" min="50" max="1000" step="1" placeholder="e.g., 150">
-            <small style="color: #666; font-size: 12px;">Calculated from: Length × Width × Height × 0.523</small>
+            <input type="number" id="uterineVolume" min="30" max="1500" step="1" placeholder="e.g., 150">
+            <small style="color: #666; font-size: 12px;">Calculated from: Length × Width × Height × 0.523. Normal: 50-90 cm³</small>
         </div>
 
         <div class="form-group">
             <label for="uterineInvolvement">Myometrial Involvement</label>
             <select id="uterineInvolvement" required>
                 <option value="">Select involvement level</option>
-                <option value="mild">Mild (<25% myometrium affected)</option>
+                <option value="mild">Mild (&lt;25% myometrium affected)</option>
                 <option value="moderate">Moderate (25-50% myometrium affected)</option>
-                <option value="severe">Severe (>50% myometrium affected)</option>
+                <option value="severe">Severe (&gt;50% myometrium affected)</option>
             </select>
+        </div>
+
+        <div class="iota-section">
+            <h4>MUSA Ultrasound Features (per 2019 Consensus)</h4>
+            <p style="font-size: 12px; color: #666; margin-bottom: 10px;">Select observed features on transvaginal ultrasound:</p>
+            
+            <div style="margin-bottom: 10px;">
+                <strong style="font-size: 13px; color: #4a5568;">Direct Features:</strong>
+            </div>
+            <div class="checkbox-group">
+                <div class="checkbox-option">
+                    <input type="checkbox" id="musaMyometrialCysts" name="musaMyometrialCysts" value="yes">
+                    <label for="musaMyometrialCysts">Myometrial cysts (anechoic spaces in myometrium)</label>
+                </div>
+                <div class="checkbox-option">
+                    <input type="checkbox" id="musaHyperechoicIslands" name="musaHyperechoicIslands" value="yes">
+                    <label for="musaHyperechoicIslands">Hyperechoic islands (bright areas in myometrium)</label>
+                </div>
+                <div class="checkbox-option">
+                    <input type="checkbox" id="musaFanShadowing" name="musaFanShadowing" value="yes">
+                    <label for="musaFanShadowing">Fan-shaped shadowing</label>
+                </div>
+                <div class="checkbox-option">
+                    <input type="checkbox" id="musaEchogenicLines" name="musaEchogenicLines" value="yes">
+                    <label for="musaEchogenicLines">Echogenic subendometrial lines/buds</label>
+                </div>
+                <div class="checkbox-option">
+                    <input type="checkbox" id="musaTranslesionalVascularity" name="musaTranslesionalVascularity" value="yes">
+                    <label for="musaTranslesionalVascularity">Translesional vascularity (blood flow through lesion)</label>
+                </div>
+                <div class="checkbox-option">
+                    <input type="checkbox" id="musaIrregularJZ" name="musaIrregularJZ" value="yes">
+                    <label for="musaIrregularJZ">Irregular junctional zone</label>
+                </div>
+                <div class="checkbox-option">
+                    <input type="checkbox" id="musaInterruptedJZ" name="musaInterruptedJZ" value="yes">
+                    <label for="musaInterruptedJZ">Interrupted junctional zone</label>
+                </div>
+            </div>
+            
+            <div style="margin: 15px 0 10px 0;">
+                <strong style="font-size: 13px; color: #4a5568;">Indirect Features:</strong>
+            </div>
+            <div class="checkbox-group">
+                <div class="checkbox-option">
+                    <input type="checkbox" id="musaAsymmetricThickening" name="musaAsymmetricThickening" value="yes">
+                    <label for="musaAsymmetricThickening">Asymmetrical myometrial thickening</label>
+                </div>
+                <div class="checkbox-option">
+                    <input type="checkbox" id="musaGlobularUterus" name="musaGlobularUterus" value="yes">
+                    <label for="musaGlobularUterus">Globular uterus</label>
+                </div>
+            </div>
+            <small style="color: #666; font-size: 11px;">MUSA: Morphological Uterus Sonographic Assessment (Van den Bosch et al., 2019)</small>
         </div>
 
         <div class="form-group" id="focalLesionFields" style="display: none;">
             <label for="lesionLocation">Lesion Location (for focal adenomyosis)</label>
             <select id="lesionLocation">
                 <option value="">Select location</option>
-                <option value="inner">Inner myometrium</option>
-                <option value="outer">Outer myometrium</option>
+                <option value="inner">Inner myometrium (better prognosis)</option>
+                <option value="outer">Outer myometrium (HIGHEST progression risk)</option>
                 <option value="fundal">Fundal region</option>
                 <option value="posterior">Posterior wall</option>
             </select>
+            <small style="color: #e53e3e; font-size: 12px;">⚠️ Outer myometrium location is the strongest predictor of progression (P=0.037)</small>
         </div>
 
         <div class="form-group" id="focalLesionCount" style="display: none;">
@@ -2162,7 +2269,7 @@ const dynamicInputConfigs = {
                 <option value="1">Single lesion</option>
                 <option value="2">2 lesions</option>
                 <option value="3">3 lesions</option>
-                <option value="multiple">Multiple lesions (>3)</option>
+                <option value="multiple">Multiple lesions (&gt;3)</option>
             </select>
         </div>
 
@@ -2632,6 +2739,21 @@ function getFormData() {
             data.previousUterineSurgery = document.getElementById('previousUterineSurgery')?.checked || false;
             data.concurrentEndometriosis = document.getElementById('concurrentEndometriosis')?.checked || false;
             data.concurrentFibroids = document.getElementById('concurrentFibroids')?.checked || false;
+            
+            // MUSA ultrasound features
+            data.musaFeatures = {
+                // Direct features
+                myometrialCysts: document.getElementById('musaMyometrialCysts')?.checked || false,
+                hyperechoicIslands: document.getElementById('musaHyperechoicIslands')?.checked || false,
+                fanShadowing: document.getElementById('musaFanShadowing')?.checked || false,
+                echogenicLines: document.getElementById('musaEchogenicLines')?.checked || false,
+                translesionalVascularity: document.getElementById('musaTranslesionalVascularity')?.checked || false,
+                irregularJZ: document.getElementById('musaIrregularJZ')?.checked || false,
+                interruptedJZ: document.getElementById('musaInterruptedJZ')?.checked || false,
+                // Indirect features
+                asymmetricThickening: document.getElementById('musaAsymmetricThickening')?.checked || false,
+                globularUterus: document.getElementById('musaGlobularUterus')?.checked || false
+            };
             break;
     }
 
