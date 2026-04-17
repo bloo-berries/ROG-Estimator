@@ -30,39 +30,39 @@ An evidence-based web application for estimating growth patterns of benign gynec
 ### Endometrioma Growth Rates
 | Source | PMID | Key Finding |
 |--------|------|-------------|
-| Muzii L, et al. 2020 | 32215556 | Median -1.7mm/year; 47% decrease, 31% stable, 22% increase |
-| Guo SW. 2009 | 33558225 | OR 3.245 for previous history; 51% at 36 months untreated |
-| Vercellini P, et al. 2018 | 28881472 | 94% recurrence-free at 36 months with continuous OCP |
-| Li et al. 2019 | 30825145 | Predictive model AUC 0.825, R² 0.79 |
+| Muzii L, et al. J Clin Med. 2023 | 36902645 | Median -1.7mm/year; 47% decrease, 31% stable, 22% increase |
+| Guo SW. Hum Reprod Update. 2009 | 19279046 | OR 3.245 for previous history; 51% at 36 months untreated |
+| Vercellini P, et al. Am J Obstet Gynecol. 2008 | 18241819 | 94% recurrence-free at 36 months with continuous OCP |
 
 ### Uterine Fibroid Growth Rates
 | Source | PMID | Key Finding |
 |--------|------|-------------|
-| Peddada SD, et al. 2008 | 23674421 | 9-89% growth over 18 months; 188% for <1cm fibroids |
-| Bhave Chittawar P, et al. 2014 | 26196297 | 41.6% recurrence at 3 years (laparoscopic), 31-43% (open) |
-| Marshall LM, et al. 1997 | 12516827 | 2-3x higher incidence in African American women |
+| Peddada SD, et al. Proc Natl Acad Sci. 2008 | 19047643 | 9-89% growth over 18 months; 188% for <1cm fibroids |
+| Bhave Chittawar P, et al. Cochrane. 2014 | 25331441 | 41.6% recurrence at 3 years (laparoscopic), 31-43% (open) |
+| Marshall LM, et al. Obstet Gynecol. 1997 | 9397113 | 2-3x higher incidence in African American women |
 
 ### Ovarian Cyst Natural History
 | Source | PMID | Key Finding |
 |--------|------|-------------|
-| Greenlee RT, et al. 2010 | 20630057 | 70-80% resolve in 2-3 cycles (premenopausal) |
-| Modesitt SC, et al. 2003 | 19037038 | 32% resolve at 1 year; 15-20% malignant potential (postmenopausal) |
-| Caspi B, et al. 1997 | 10669551 | Dermoid: 1.8 mm/year; >2cm/year excludes dermoid |
-| Patel MD, et al. 2005 | 16322114 | Hemorrhagic: 87.5% resolve within 6 weeks |
+| Greenlee RT, et al. Am J Obstet Gynecol. 2010 | 20096820 | 70-80% resolve in 2-3 cycles (premenopausal) |
+| Modesitt SC, et al. Obstet Gynecol. 2003 | 12962948 | 32% resolve at 1 year; 15-20% malignant potential (postmenopausal) |
+| Caspi B, et al. Fertil Steril. 1997 | 9314922 | Dermoid: 1.8 mm/year; >2cm/year excludes dermoid |
+| Patel MD, et al. J Ultrasound Med. 2005 | 15840791 | Hemorrhagic cyst sonographic diagnosis |
 
 ### Malignancy Risk Assessment
 | Calculator | PMID | Performance |
 |------------|------|-------------|
-| ROMA | 19962172 | Sensitivity 92.3%, Specificity 76.0% |
-| RMI | 2398886 | Sensitivity 70-87%, Specificity 89-97% |
-| IOTA Simple Rules | 18977552 | Sensitivity 95%, Specificity 91% |
-| O-RADS | 32134991 | Standardized risk categorization |
+| ROMA | 18851871 | Sensitivity 92.3%, Specificity 76.0% |
+| RMI | 2223684 | Sensitivity 70-87%, Specificity 89-97% |
+| IOTA Simple Rules | 18504770 | Sensitivity 95%, Specificity 91% |
+| O-RADS | 31687921 | Standardized risk categorization |
 
 ### Adenomyosis Progression
 | Source | PMID | Key Finding |
 |--------|------|-------------|
-| Exacoustos C, et al. 2017 | 28922625 | 21.3% progression at 12 months; 48% annual volume growth |
-| Reinhold C, et al. 1999 | 25681495 | Diagnostic threshold ≥12mm; 15.1% annual JZ thickening |
+| Borghese G, et al. Int J Gynaecol Obstet. 2024 | 38738458 | 21.3% progression at 12 months; Focal outer myometrium = highest risk |
+| Reinhold C, et al. Radiology. 1996 | 8633139 | Diagnostic threshold ≥12mm; Primary marker for diffuse type |
+| Van den Bosch T, et al. Ultrasound Obstet Gynecol. 2015 | 25652685 | MUSA consensus — sonographic features of adenomyosis |
 
 ## Calculation Modes
 

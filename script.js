@@ -9,113 +9,113 @@ let calculatorForm;
 const scientificReferences = {
     endometrioma: {
         growthRates: {
-            pmid: '32215556',
-            citation: 'Muzii L, et al. Natural history of endometriomas. Fertil Steril. 2020',
-            values: 'Median -1.7mm/year; 47% decrease, 31% stable, 22% increase'
+            pmid: '36902645',
+            citation: 'Muzii L, et al. Expectant, Medical, and Surgical Management of Ovarian Endometriomas. J Clin Med. 2023',
+            values: 'Median regression -1.7mm/year; 47% decrease, 31% stable, 22% increase'
         },
         recurrence: {
-            pmid: '33558225',
-            citation: 'Guo SW. Recurrence of endometriomas. Hum Reprod Update. 2009',
+            pmid: '19279046',
+            citation: 'Guo SW. Recurrence of endometriosis and its control. Hum Reprod Update. 2009;15(4):441-61',
             values: 'OR 3.245 for previous history; 51% at 36 months untreated'
         },
         treatment: {
-            pmid: '28881472',
-            citation: 'Vercellini P, et al. Continuous OCP for recurrence prevention. BJOG. 2018',
+            pmid: '18241819',
+            citation: 'Vercellini P, et al. Postoperative oral contraceptive exposure and endometrioma recurrence. Am J Obstet Gynecol. 2008;198(5):504.e1-5',
             values: '94% recurrence-free at 36 months with continuous OCP'
         },
         liModel: {
-            pmid: '30825145',
-            citation: 'Li et al. Predictive model for endometrioma growth. J Minim Invasive Gynecol. 2019',
-            values: 'AUC 0.825, R² 0.79 using FSH, LH, lipid profile'
+            pmid: null,
+            citation: 'Li et al. predictive model — PMID unverified; values used as approximate clinical estimates',
+            values: 'Laboratory integration (FSH, LH, lipid profile) for enhanced prediction'
         }
     },
     fibroid: {
         growthRates: {
-            pmid: '23674421',
-            citation: 'Peddada SD, et al. Growth dynamics of uterine leiomyomas. Am J Obstet Gynecol. 2008',
+            pmid: '19047643',
+            citation: 'Peddada SD, et al. Growth of uterine leiomyomata among premenopausal black and white women. Proc Natl Acad Sci USA. 2008;105(50):19887-92',
             values: '9-89% growth over 18 months; 188% for <1cm fibroids'
         },
         recurrence: {
-            pmid: '26196297',
-            citation: 'Bhave Chittawar P, et al. Minimally invasive surgical techniques. Cochrane. 2014',
+            pmid: '25331441',
+            citation: 'Bhave Chittawar P, et al. Minimally invasive surgical techniques versus open myomectomy for uterine fibroids. Cochrane Database Syst Rev. 2014',
             values: '41.6% at 3 years (laparoscopic), 31-43% (open)'
         },
         race: {
-            pmid: '12516827',
-            citation: 'Marshall LM, et al. Variation by race. Am J Epidemiol. 1997',
+            pmid: '9397113',
+            citation: 'Marshall LM, et al. Variation in the incidence of uterine leiomyoma among premenopausal women by age and race. Obstet Gynecol. 1997;90(6):967-73',
             values: '2-3x higher incidence in African American women'
         }
     },
     simpleCyst: {
         resolution: {
-            pmid: '20630057',
-            citation: 'Greenlee RT, et al. Management of simple cysts. Obstet Gynecol. 2010',
+            pmid: '20096820',
+            citation: 'Greenlee RT, et al. Prevalence, incidence, and natural history of simple ovarian cysts among women >55 years old. Am J Obstet Gynecol. 2010',
             values: '70-80% resolve in 2-3 cycles (premenopausal)'
         },
         postmenopausal: {
-            pmid: '19037038',
-            citation: 'Modesitt SC, et al. Risk of malignancy. Obstet Gynecol. 2003',
+            pmid: '12962948',
+            citation: 'Modesitt SC, et al. Risk of malignancy in unilocular ovarian cystic tumors less than 10 centimeters in diameter. Obstet Gynecol. 2003',
             values: '32% resolve at 1 year; 15-20% malignant potential'
         }
     },
     complexCyst: {
         dermoid: {
-            pmid: '10669551',
-            citation: 'Caspi B, et al. Mature teratoma growth rate. Obstet Gynecol. 1997',
+            pmid: '9314922',
+            citation: 'Caspi B, et al. The growth pattern of ovarian dermoid cysts: a prospective study. Fertil Steril. 1997;68(3):501-505',
             values: '1.8 mm/year; >2cm/year excludes dermoid'
         },
         hemorrhagic: {
-            pmid: '16322114',
-            citation: 'Patel MD, et al. Cyst resolution rates. Radiology. 2005',
-            values: '87.5% resolve within 6 weeks'
+            pmid: '15840791',
+            citation: 'Patel MD, et al. Likelihood ratio of sonographic findings for hemorrhagic ovarian cysts. J Ultrasound Med. 2005',
+            values: 'Most hemorrhagic cysts resolve within 6-8 weeks with conservative management'
         },
         oRads: {
-            pmid: '32134991',
-            citation: 'Andreotti RF, et al. O-RADS US Risk Stratification. Radiology. 2020',
+            pmid: '31687921',
+            citation: 'Andreotti RF, et al. O-RADS US Risk Stratification and Management System. Radiology. 2020;294(1):168-185',
             values: 'Standardized risk categorization system'
         }
     },
     adenomyosis: {
         progression: {
             pmid: '38738458',
-            citation: 'Progression of adenomyosis: Rate and associated factors. Ultrasound Obstet Gynecol. 2024',
+            citation: 'Borghese G, et al. Progression of adenomyosis: Rate and associated factors. Int J Gynaecol Obstet. 2024;167(1):214-222',
             values: '21.3% progression at 12 months; Focal outer myometrium = highest risk (P=0.037)'
         },
         typeDistribution: {
             pmid: '34196202',
-            citation: 'The Value of Adenomyosis Type in Clinical Assessment. J Clin Med. 2021',
-            values: 'Diffuse: 88% of cases; Nodular/focal: 12%; Different clinical presentations'
+            citation: 'Selvi Demirtas G, Uyar I. The Value of Adenomyosis Type in Clinical Assessment. Arch Iran Med. 2021',
+            values: 'Diffuse: ~90% of cases; Nodular/focal: ~10%; Different clinical presentations'
         },
         musaConsensus: {
-            pmid: '30850322',
-            citation: 'Van den Bosch T, et al. MUSA consensus on adenomyosis. Ultrasound Obstet Gynecol. 2019',
+            pmid: '25652685',
+            citation: 'Van den Bosch T, et al. Terms, definitions and measurements to describe sonographic features of myometrium and uterine masses (MUSA). Ultrasound Obstet Gynecol. 2015;46(3):284-98',
             values: 'Direct features: myometrial cysts, hyperechoic islands, fan-shaped shadowing, echogenic lines. Indirect: asymmetrical thickening, globular uterus'
         },
         jzThickness: {
-            pmid: '25681495',
-            citation: 'Reinhold C, et al. JZ thickness criteria. Radiology. 1999',
+            pmid: '8633139',
+            citation: 'Reinhold C, et al. Diffuse adenomyosis: comparison of endovaginal US and MR imaging with histopathologic correlation. Radiology. 1996;199(1):151-8',
             values: 'Diagnostic threshold ≥12mm; Primary marker for diffuse type'
         },
         fertility: {
             pmid: '39805535',
-            citation: 'Impact on fertility outcomes. Reprod Biomed Online. 2024',
+            citation: 'Chen X, et al. Adenomyosis patterns on transvaginal sonography could predict obstetrical outcomes. J Minim Invasive Gynecol. 2025',
             values: 'Diffuse type: lower conception and live birth rates vs focal'
         }
     },
     malignancyRisk: {
         roma: {
-            pmid: '19962172',
-            citation: 'Moore RG, et al. ROMA algorithm validation. Gynecol Oncol. 2009',
+            pmid: '18851871',
+            citation: 'Moore RG, et al. A novel multiple marker bioassay utilizing HE4 and CA125 for the prediction of ovarian cancer. Gynecol Oncol. 2009;112(1):40-46',
             values: 'Sensitivity 92.3%, Specificity 76.0% for epithelial ovarian cancer'
         },
         rmi: {
-            pmid: '2398886',
-            citation: 'Jacobs I, et al. Risk of Malignancy Index. Br J Obstet Gynaecol. 1990',
+            pmid: '2223684',
+            citation: 'Jacobs I, et al. A risk of malignancy index incorporating CA 125, ultrasound and menopausal status. Br J Obstet Gynaecol. 1990;97(10):922-929',
             values: 'RMI ≥200: sensitivity 70-87%, specificity 89-97%'
         },
         iota: {
-            pmid: '18977552',
-            citation: 'Timmerman D, et al. IOTA Simple Rules. Ultrasound Obstet Gynecol. 2008',
+            pmid: '18504770',
+            citation: 'Timmerman D, et al. Simple ultrasound-based rules for the diagnosis of ovarian cancer. Ultrasound Obstet Gynecol. 2008;31(6):681-90',
             values: 'Sensitivity 95%, Specificity 91% for malignancy'
         }
     }
@@ -197,15 +197,13 @@ function calculateRMI(ultrasoundFeatures, menopausalStatus, ca125) {
     const rmi = U * M * ca125;
     
     let riskCategory, interpretation;
-    if (rmi >= 250) {
+    if (rmi >= 200) {
+        // Standard cutoff per Jacobs et al. 1990: RMI ≥200 = high risk
         riskCategory = 'High';
-        interpretation = 'High risk of malignancy - urgent referral to gynecologic oncologist recommended';
-    } else if (rmi >= 200) {
-        riskCategory = 'Intermediate';
-        interpretation = 'Intermediate risk - consider specialist consultation and further evaluation';
+        interpretation = 'High risk of malignancy (RMI ≥200) - referral to gynecologic oncologist recommended';
     } else {
         riskCategory = 'Low';
-        interpretation = 'Low risk of malignancy - routine management with follow-up imaging appropriate';
+        interpretation = 'Low risk of malignancy (RMI <200) - routine management with follow-up imaging appropriate';
     }
     
     return {
@@ -437,7 +435,7 @@ function getReferencesForType(type, data, results) {
             if (data.adenomyosisType === 'diffuse') {
                 refs.push(scientificReferences.adenomyosis.jzThickness);
             }
-            refs.push(scientificReferences.adenomyosis.naturalHistory);
+            refs.push(scientificReferences.adenomyosis.musaConsensus);
             break;
     }
     
@@ -447,8 +445,10 @@ function getReferencesForType(type, data, results) {
 function formatReferencesHTML(refs) {
     if (!refs || refs.length === 0) return 'No specific references available.';
     
-    return refs.map(ref => 
-        `<strong>PMID ${ref.pmid}:</strong> ${ref.citation} — ${ref.values}`
+    return refs.filter(ref => ref != null).map(ref =>
+        ref.pmid
+            ? `<strong>PMID ${ref.pmid}:</strong> ${ref.citation} — ${ref.values}`
+            : `${ref.citation} — ${ref.values}`
     ).join('<br><br>');
 }
 
@@ -557,17 +557,16 @@ const growthCalculators = {
             recurrenceProbability = Math.min(recurrenceProbability, 95); // Cap at 95%
         }
         
-        // Enhanced age adjustment for recurrence based on latest studies
+        // Age adjustment for recurrence (applied once here — not duplicated below)
         if (data.age < 25) {
             // Median time to recurrence: 53 months in adolescents
-            recurrenceProbability *= 0.5;
+            recurrenceProbability *= 0.7;
         } else if (data.age > 40) {
-            // Enhanced protective effect of older age
             // Women over 40: 16.7% cumulative recurrence at 5 years vs 40-50% general population
             recurrenceProbability *= 0.4; // 60% reduction in recurrence risk
         }
-        
-        // Enhanced growth pattern determination based on latest research distribution
+
+        // Growth pattern determination based on latest research distribution
         // 47% decrease, 31% stable, 22% increase with precise ranges
         let growthPattern;
         
@@ -629,21 +628,16 @@ const growthCalculators = {
             }
         }
         
-        // Enhanced age-specific modifications based on latest research
+        // Age-specific growth rate modifications (recurrence already adjusted above)
         // Relative risk 0.764 (95% CI: 0.615-0.949) per year of age
         if (data.age < 25) {
-            // Younger patients have higher recurrence risk but different growth patterns
             if (growthPattern === 'increase') baseGrowthRate *= 1.3; // Higher growth in young
-            recurrenceProbability *= 1.5; // Higher recurrence risk
         } else if (data.age > 40) {
-            // Enhanced protective effect of older age
             if (growthPattern === 'increase') baseGrowthRate *= 0.5;
-            recurrenceProbability *= 0.4; // 60% reduction in recurrence risk
         }
         
-        // Enhanced calculations incorporating Li et al. model parameters (82.5% accuracy)
-        // Volume-based calculations for more accuracy: Volume = 0.523 × Length × Width × Height
-        const currentVolume = 0.523 * data.currentSize * data.currentSize * data.currentSize; // Simplified for diameter
+        // Volume-based calculations: V = (4/3)π(d/2)³ for sphere approximation from diameter
+        const currentVolume = (4/3) * Math.PI * Math.pow(data.currentSize / 2, 3);
         
         // Enhanced Li et al. model adjustments (AUC 0.825, R² 0.79) - only if enabled
         // Six key variables: age, FSH, LDL, LH, total cholesterol, neutrophil-to-lymphocyte ratio
@@ -685,10 +679,10 @@ const growthCalculators = {
             behavior = 'Regressing - favorable pattern';
         }
         
-        // Enhanced confidence interval calculation based on research
-        // 95% Confidence Intervals = Growth Rate ± 1.96 × √(CV₁² + CV₂²)
-        const measurementVariability = 0.74; // ±0.74 cm from research
-        const confidenceInterval = Math.abs(totalGrowth) * 0.3 + measurementVariability; // ±30% + measurement variability
+        // Estimated range based on measurement variability and growth rate variance
+        // Note: This is an approximate range, not a formal 95% CI from a single study
+        const measurementVariability = 0.74; // ±0.74 cm typical ultrasound measurement error
+        const confidenceInterval = Math.abs(totalGrowth) * 0.3 + measurementVariability;
         
         return {
             monthlyRate,
@@ -824,11 +818,15 @@ const growthCalculators = {
             }
         }
         
-        // Enhanced age adjustment based on research
+        // Age adjustment based on research
         if (data.age >= 30 && data.age <= 40) {
             volumeGrowthPercent *= 1.3; // Peak growth years
+        } else if (data.age > 50) {
+            // Postmenopausal regression: fibroids typically shrink 20-50% after menopause
+            // due to estrogen withdrawal
+            volumeGrowthPercent = -2.5; // ~30% annual volume reduction per month
         } else if (data.age > 45) {
-            volumeGrowthPercent *= 0.5; // Reduced growth in older women
+            volumeGrowthPercent *= 0.4; // Perimenopausal: markedly reduced growth
         } else if (data.age < 25) {
             volumeGrowthPercent *= 1.2; // Higher growth in younger women
         }
@@ -847,9 +845,9 @@ const growthCalculators = {
             volumeGrowthPercent *= 0.9; // Slower growth for subserosal
         }
         
-        // Enhanced pregnancy effect: 122% increase in first 7 weeks
+        // Pregnancy effect: 122% volume increase in first 7 weeks
         if (data.pregnant) {
-            volumeGrowthPercent = 122 / 1.75; // per month
+            volumeGrowthPercent = 122 / 1.617; // 7 weeks = 1.617 months (7/4.33)
         }
         
         // Enhanced spontaneous regression (7% of nodules show zero-growth or regression)
@@ -877,6 +875,14 @@ const growthCalculators = {
                     recurrenceProbability *= 0.8; // 20% reduction in recurrence
                 }
                 volumeGrowthPercent *= 0.5; // 50% reduction in growth
+            } else if (data.treatment === 'ulipristal') {
+                // Ulipristal acetate (Esmya): selective progesterone receptor modulator
+                // 30-50% volume reduction over 3 months of treatment
+                volumeGrowthPercent = -40 / 3; // ~40% reduction over 3 months, per month
+            } else if (data.treatment === 'hrt') {
+                // Hormone replacement therapy: may stimulate fibroid growth
+                // Postmenopausal women on HRT can see 5-25% volume increase
+                volumeGrowthPercent = Math.max(volumeGrowthPercent, 1.0); // At least 1%/month growth
             }
         }
         
@@ -922,8 +928,8 @@ const growthCalculators = {
             reoperationRisk = 12; // 12% require repeat surgery for large fibroids
         }
         
-        // Enhanced confidence interval calculation
-        const confidenceInterval = Math.abs(totalGrowth) * 0.25 + 0.5; // ±25% + measurement variability
+        // Estimated range based on growth variance and measurement error
+        const confidenceInterval = Math.abs(totalGrowth) * 0.25 + 0.5;
         
         return {
             monthlyRate,
@@ -1006,9 +1012,26 @@ const growthCalculators = {
         } else if (data.cystadenomaType === 'mucinous') {
             baseGrowthRate = 0.83 / 12; // 0.069 cm/month (62% faster than serous)
         } else if (data.cystadenomaType === 'borderline') {
-            baseGrowthRate = (0.3 + Math.random() * 0.5) / 12; // 0.3-0.8 cm/year
+            if (calculationMode === 'deterministic') {
+                baseGrowthRate = 0.55 / 12; // Median of 0.3-0.8 cm/year
+            } else {
+                baseGrowthRate = (0.3 + Math.random() * 0.5) / 12; // 0.3-0.8 cm/year
+            }
         }
         
+        // Treatment effects on simple cysts
+        if (data.treatment && data.treatment !== 'none') {
+            if (data.treatment === 'ocp' || data.treatment === 'continuous-ocp') {
+                // OCPs don't accelerate resolution of existing cysts but prevent new ones
+                // and may modestly increase resolution rate
+                resolutionProbability *= 1.15; // Modest increase in resolution
+                baseGrowthRate *= 0.5; // Reduced growth of persistent cysts
+            } else if (data.treatment === 'progestin') {
+                resolutionProbability *= 1.1;
+                baseGrowthRate *= 0.6;
+            }
+        }
+
         // PCOS impact on cyst development
         if (data.pcos) {
             // PCOS does not typically involve true ovarian cysts but multiple small follicles
@@ -1227,6 +1250,20 @@ const growthCalculators = {
                 break;
         }
         
+        // Treatment effects on complex cysts
+        if (data.treatment && data.treatment !== 'none' && data.cysttype !== 'hemorrhagic') {
+            if (data.treatment === 'continuous-ocp' || data.treatment === 'ocp') {
+                monthlyRate *= 0.6; // 40% reduction in growth
+                resolutionProbability *= 1.15;
+            } else if (data.treatment === 'gnrh') {
+                monthlyRate *= 0.3; // Significant growth suppression
+                resolutionProbability *= 1.3;
+            } else if (data.treatment === 'progestin') {
+                monthlyRate *= 0.7; // 30% reduction
+                resolutionProbability *= 1.1;
+            }
+        }
+
         // PCOS impact on complex cyst development
         if (data.pcos) {
             // PCOS with concurrent endometriosis: 5% prevalence in operative cohorts
@@ -1463,7 +1500,13 @@ const growthCalculators = {
         // ============================================================================
         
         if (data.treatment && data.treatment !== 'none') {
-            if (data.treatment === 'gnrh') {
+            if (data.treatment === 'dienogest') {
+                // Dienogest: strong evidence for adenomyosis treatment
+                // Reduces uterine volume and dysmenorrhea significantly
+                baseGrowthRate = -0.20; // 20% volume reduction while on treatment
+                progressionProbability *= 0.35; // 65% reduction in progression
+                jzThicknessIncrease = -0.08; // JZ thinning with treatment
+            } else if (data.treatment === 'gnrh') {
                 // GnRH agonists: Most effective short-term, causes regression
                 // But temporary - rebound growth after discontinuation
                 baseGrowthRate = -0.30; // 30% volume REDUCTION while on treatment
@@ -1658,12 +1701,14 @@ const growthCalculators = {
             totalGrowth = finalSize - Math.pow(currentVolume, 1/3);
             monthlyRate = totalGrowth / data.projectionMonths;
         } else {
-            // Fallback to using currentSize if uterine volume not provided
-            currentVolume = (4/3) * Math.PI * Math.pow(data.currentSize/2, 3);
+            // Fallback: estimate uterine volume from JZ thickness or use default
+            // If currentSize is available, use it; otherwise estimate from JZ thickness
+            const estimatedSize = data.currentSize || (data.jzThickness ? data.jzThickness / 10 * 4 : 6);
+            currentVolume = (4/3) * Math.PI * Math.pow(estimatedSize / 2, 3);
             const monthlyGrowthMultiplier = 1 + (baseGrowthRate / 12);
             finalVolume = currentVolume * Math.pow(monthlyGrowthMultiplier, data.projectionMonths);
             finalSize = 2 * Math.pow((3 * finalVolume) / (4 * Math.PI), 1/3);
-            totalGrowth = finalSize - data.currentSize;
+            totalGrowth = finalSize - estimatedSize;
             monthlyRate = totalGrowth / data.projectionMonths;
         }
         
@@ -2285,6 +2330,7 @@ const dynamicInputConfigs = {
                 <option value="none">No hormonal treatment</option>
                 <option value="continuous-ocp">Continuous oral contraceptives</option>
                 <option value="cyclic-ocp">Cyclic oral contraceptives</option>
+                <option value="dienogest">Dienogest (Visanne)</option>
                 <option value="gnrh">GnRH agonist therapy</option>
                 <option value="progestin">Progestin-only therapy</option>
                 <option value="levonorgestrel-iud">Levonorgestrel IUD</option>
@@ -2339,8 +2385,6 @@ const dynamicInputConfigs = {
 
 // Function to handle growth type selection
 function selectGrowthType(type, clickedCard) {
-    console.log('selectGrowthType called with:', type, clickedCard);
-    
     selectedType = type;
     
     // Update visual selection
@@ -2365,7 +2409,6 @@ function selectGrowthType(type, clickedCard) {
     if (dynamicInputConfigs[selectedType]) {
         dynamicInputs.innerHTML = dynamicInputConfigs[selectedType];
     } else {
-        console.error('No dynamic input configuration found for type:', selectedType);
         dynamicInputs.innerHTML = '<div class="form-group"><p>Configuration not found for this type.</p></div>';
     }
     
@@ -2502,24 +2545,6 @@ function backToSelection() {
 
 
 
-// Add keyboard navigation for accessibility
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Tab' && !selectedType) {
-        // Auto-select first growth type if none selected and user tabs
-        const firstCard = document.querySelector('.growth-type-card');
-        if (firstCard) {
-            selectGrowthType('endometrioma', firstCard);
-        }
-    }
-});
-
-// Add click outside to deselect functionality
-document.addEventListener('click', (e) => {
-    if (!e.target.closest('.growth-type-card') && !e.target.closest('#calculatorForm')) {
-        // Don't deselect if clicking on form elements
-        return;
-    }
-});
 
 function getFormData() {
     console.log('getFormData called for type:', selectedType);
@@ -2529,21 +2554,7 @@ function getFormData() {
     const ageEl = document.getElementById('age');
     const timeframeEl = document.getElementById('timeframe');
     const pregnantEl = document.querySelector('input[name="pregnant"]:checked');
-    
-    console.log('Required elements found:', {
-        currentSize: !!currentSizeEl,
-        age: !!ageEl,
-        timeframe: !!timeframeEl,
-        pregnant: !!pregnantEl
-    });
-    
     if (!currentSizeEl || !ageEl || !timeframeEl || !pregnantEl) {
-        console.error('Missing required form elements:', {
-            currentSize: !currentSizeEl,
-            age: !ageEl,
-            timeframe: !timeframeEl,
-            pregnant: !pregnantEl
-        });
         throw new Error('Required form elements not found');
     }
     
@@ -2571,16 +2582,6 @@ function getFormData() {
             const deepEndometriosisEl = document.getElementById('deepEndometriosis');
             const adenomyosisEl = document.getElementById('adenomyosis');
             const bilateralEl = document.getElementById('bilateral');
-            
-            console.log('Endometrioma elements found:', {
-                endoTreatment: !!endoTreatmentEl,
-                previousSurgery: !!previousSurgeryEl,
-                previousEndoDiagnosis: !!previousEndoDiagnosisEl,
-                deepEndometriosis: !!deepEndometriosisEl,
-                adenomyosis: !!adenomyosisEl,
-                bilateral: !!bilateralEl
-            });
-            
             data.treatment = endoTreatmentEl?.value || 'none';
             data.previoussurgery = previousSurgeryEl?.value || 'no';
             data.previousendodiagnosis = previousEndoDiagnosisEl?.value || 'no';
@@ -2612,16 +2613,6 @@ function getFormData() {
             const raceEl = document.querySelector('input[name="race"]:checked');
             const fibroidTreatmentEl = document.getElementById('fibroidTreatment');
             const figoTypeEl = document.getElementById('figoType');
-            
-            console.log('Fibroid elements found:', {
-                multipleFibroids: !!multipleFibroidsEl,
-                fibroidLocation: !!fibroidLocationEl,
-                previousMyomectomy: !!previousMyomectomyEl,
-                race: !!raceEl,
-                fibroidTreatment: !!fibroidTreatmentEl,
-                figoType: !!figoTypeEl
-            });
-            
             data.multiplefibroids = multipleFibroidsEl?.value || 'single';
             data.location = fibroidLocationEl?.value || 'intramural';
             data.previousmyomectomy = previousMyomectomyEl?.value || 'no';
@@ -2643,16 +2634,6 @@ function getFormData() {
             const simpleCystTreatmentEl = document.getElementById('simpleCystTreatment');
             const simpleCystCa125El = document.getElementById('simpleCystCa125');
             const simpleCystHe4El = document.getElementById('simpleCystHe4');
-            
-            console.log('Simple cyst elements found:', {
-                menoStatus: !!menoStatusEl,
-                cystadenomaType: !!cystadenomaTypeEl,
-                pcos: !!pcosEl,
-                treatment: !!simpleCystTreatmentEl,
-                ca125: !!simpleCystCa125El,
-                he4: !!simpleCystHe4El
-            });
-            
             data.menopausal = menoStatusEl?.value || 'pre';
             data.cystadenomaType = cystadenomaTypeEl?.value || '';
             data.pcos = pcosEl?.value === 'yes';
@@ -2670,16 +2651,6 @@ function getFormData() {
             const complexCystTreatmentEl = document.getElementById('complexCystTreatment');
             const complexCystCa125El = document.getElementById('complexCystCa125');
             const complexCystHe4El = document.getElementById('complexCystHe4');
-            
-            console.log('Complex cyst elements found:', {
-                cystType: !!cystTypeEl,
-                complexMenoStatus: !!complexMenoStatusEl,
-                pcos: !!complexPCOSEl,
-                treatment: !!complexCystTreatmentEl,
-                ca125: !!complexCystCa125El,
-                he4: !!complexCystHe4El
-            });
-            
             data.cysttype = cystTypeEl?.value || '';
             data.menopausal = complexMenoStatusEl?.value || 'pre';
             data.pcos = complexPCOSEl?.value === 'yes';
@@ -2716,16 +2687,6 @@ function getFormData() {
             const uterineInvolvementEl = document.getElementById('uterineInvolvement');
             const adenomyosisTreatmentEl = document.getElementById('adenomyosisTreatment');
             const symptomSeverityEl = document.querySelector('input[name="symptomSeverity"]:checked');
-            
-            console.log('Adenomyosis elements found:', {
-                adenomyosisType: !!adenomyosisTypeEl,
-                jzThickness: !!jzThicknessEl,
-                uterineVolume: !!uterineVolumeEl,
-                uterineInvolvement: !!uterineInvolvementEl,
-                adenomyosisTreatment: !!adenomyosisTreatmentEl,
-                symptomSeverity: !!symptomSeverityEl
-            });
-            
             data.adenomyosisType = adenomyosisTypeEl?.value || '';
             data.jzThickness = parseFloat(jzThicknessEl?.value) || null;
             data.uterineVolume = parseFloat(uterineVolumeEl?.value) || null;
@@ -2836,7 +2797,7 @@ function calculateGrowth() {
             if (error.message.includes('Required form elements not found')) {
                 alert('Form elements not found. Please refresh the page and try again.');
             } else if (error.message.includes('Cannot read properties')) {
-                alert('Please ensure all required fields are filled out correctly. Check the browser console for details.');
+                alert('Please ensure all required fields are filled out correctly.');
             } else if (error.message.includes('NaN')) {
                 alert('Please enter valid numbers for all numeric fields.');
             } else {
@@ -2903,7 +2864,7 @@ function displayResults(data, results, multiTimeResults) {
             
             // Add layman's explanation
             if (ciExplanation) {
-                ciExplanation.innerHTML = `<strong>What does this mean?</strong> Based on research, there's a 95% chance your actual size will fall somewhere in this range. The estimate above (${results.finalSize.toFixed(1)} cm) is the most likely outcome, but everyone's body is different — your result could be anywhere between ${lowerBound.toFixed(1)} cm and ${upperBound.toFixed(1)} cm.`;
+                ciExplanation.innerHTML = `<strong>What does this mean?</strong> Based on research, your actual size will likely fall somewhere in this range. The estimate above (${results.finalSize.toFixed(1)} cm) is the most typical outcome, but everyone's body is different — your result could be anywhere between ${lowerBound.toFixed(1)} cm and ${upperBound.toFixed(1)} cm. This range accounts for measurement variability and natural biological variation.`;
             }
         }
     }
@@ -3623,245 +3584,6 @@ function generateWarnings(type, data, results) {
     return warnings.join(' ');
 }
 
-function generateClinicalRecommendations(type, data, results) {
-    let recommendations = [];
-    let warnings = [];
-    let riskStratification = [];
-
-    // Universal size thresholds
-    if (results.finalSize >= 10) {
-        warnings.push('Size ≥10cm: Surgical consideration threshold reached');
-    } else if (results.finalSize >= 7) {
-        recommendations.push('<strong>Size ≥7cm: Routine follow-up recommended for all patients</strong>');
-    } else if (results.finalSize >= 5) {
-        recommendations.push('Size ≥5cm: General follow-up threshold (with exceptions for well-characterized cysts)');
-    }
-
-    // Growth velocity assessment (>2cm/year is rapid growth)
-    if (results.growthVelocityCmYear !== undefined && results.growthVelocityCmYear > 2) {
-        warnings.push('Growth >2cm/year: Rapid growth requiring immediate evaluation');
-    }
-
-    // Type-specific recommendations
-    switch (type) {
-        case 'endometrioma':
-            // Size-based management
-            if (results.finalSize >= 4) {
-                recommendations.push('Consider surgical evaluation for symptomatic cysts ≥4cm');
-                recommendations.push('Monitor ovarian reserve with AMH if fertility desired');
-            }
-            
-            // Treatment optimization
-            if (data.treatment === 'none' && results.growthPattern === 'increase') {
-                recommendations.push('Consider dienogest for long-term suppression (preserves AMH better than GnRH)');
-                recommendations.push('Continuous OC can reduce growth by 48%');
-            }
-            
-            // Post-surgical management
-            if (data.previoussurgery === 'yes' && results.recurrenceProbability !== undefined) {
-                recommendations.push(`Recurrence risk: ${results.recurrenceProbability.toFixed(1)}% at ${data.projectionMonths} months`);
-                if (data.treatment !== 'continuous-oc') {
-                    recommendations.push('Long-term continuous OC reduces recurrence by 90%');
-                }
-            }
-            
-            // Age-specific guidance
-            if (data.age < 25) {
-                recommendations.push('Younger patients: median 53 months to recurrence vs 22.4 months in older women');
-            }
-            break;
-
-        case 'fibroid':
-            // Size and growth assessment
-            // Check if growth rate exceeds 30% per 3 months threshold
-            const threeMonthGrowth = (results.volumeGrowthPercent / data.projectionMonths) * 3;
-            if (threeMonthGrowth > 30) {
-                warnings.push('Volume increase >30% per 3 months defines growth spurt');
-            }
-            
-            if (data.currentSize < 1 && results.finalSize > 2) {
-                recommendations.push('Small fibroids show dramatic growth (up to 188% over 18 months)');
-            }
-            
-            // Treatment considerations
-            if (data.treatment === 'gnrh') {
-                recommendations.push('GnRH agonists: expect 40-60% volume reduction over 3-4 months');
-                warnings.push('Rebound growth occurs immediately upon GnRH discontinuation');
-            }
-            
-            if ((!data.treatment || data.treatment === 'none') && results.totalGrowth > 0 && data.age < 45) {
-                recommendations.push('Consider medical management for symptomatic growing fibroids');
-            }
-            
-            // Special populations
-            if (data.pregnant) {
-                warnings.push('Pregnancy: expect 122% growth in first 7 weeks');
-                recommendations.push('Monitor for red degeneration and preterm labor risk');
-            }
-            
-            if (data.race === 'african-american' && data.age < 40) {
-                recommendations.push('Higher growth rates expected in young African American women');
-            }
-            
-            // Regression possibility
-            if (results.totalGrowth < 0) {
-                recommendations.push('20% of fibroids spontaneously regress without treatment');
-            }
-            break;
-
-        case 'simple-cyst':
-            // Menopausal status-based management
-            if (data.menopausal === 'pre') {
-                recommendations.push('70-80% of functional cysts resolve within 2-3 cycles');
-                if (data.currentSize < 3) {
-                    recommendations.push('Size <3cm: reporting threshold for premenopausal women');
-                }
-            } else if (data.menopausal === 'post') {
-                recommendations.push('Only 32% resolve at 1 year in postmenopausal women');
-                if (data.currentSize >= 1) {
-                    recommendations.push('Size ≥1cm: reporting threshold for postmenopausal women');
-                }
-                recommendations.push('Consider CA-125 for risk stratification');
-            }
-            
-            // PCOS-specific management
-            if (data.pcos) {
-                recommendations.push('PCOS: monitor for multiple small follicles (2-9mm) rather than true cysts');
-                recommendations.push('Combined hormonal contraceptives suppress functional cyst formation in PCOS');
-            }
-            
-            // Measurement variability
-            if (results.measurementVariability !== undefined) {
-                recommendations.push(`Measurement variability: ±${results.measurementVariability}cm`);
-                
-                if (Math.abs(results.totalGrowth) < results.measurementVariability) {
-                    recommendations.push('<strong>Change is within measurement variability - may not represent true growth</strong>');
-                    recommendations.push('Follow-up intervals should exceed 1 year for accurate growth assessment');
-                }
-            }
-            break;
-
-        case 'complex-cyst':
-            if (data.cysttype === 'hemorrhagic') {
-                recommendations.push('Hemorrhagic cysts: 87.5% resolve within 6 weeks');
-                recommendations.push('Conservative management typically sufficient');
-                recommendations.push('Follow-up ultrasound at 6-8 weeks');
-            } else if (data.cysttype === 'dermoid') {
-                recommendations.push('Dermoid cysts: 0.18 cm/year growth rate (slowest of all cyst types)');
-                recommendations.push('Growth >2cm/year excludes dermoid diagnosis');
-                if (results.finalSize > 6) {
-                    recommendations.push('Consider surgery for large dermoids due to torsion risk');
-                }
-            } else if (data.cysttype === 'serous') {
-                recommendations.push('Serous cystadenomas: 0.51 cm/year growth rate');
-                recommendations.push('Conservative management for lesions under 7cm');
-            } else if (data.cysttype === 'mucinous') {
-                recommendations.push('Mucinous cystadenomas: 0.83 cm/year (62% faster than serous)');
-                recommendations.push('6.3% recurrence rates, particularly in younger patients');
-                if (results.finalSize > 10) {
-                    warnings.push('Large mucinous cysts require careful evaluation for borderline features');
-                }
-            } else if (data.cysttype === 'endometrioma') {
-                recommendations.push('Endometriomas: 47% decrease, 31% stable, 22% increase in size');
-                recommendations.push('Conservative management effective for asymptomatic cases under 4-5cm');
-            } else if (data.cysttype === 'septated') {
-                recommendations.push('Septated cysts: 38.8% resolve spontaneously with mean resolution time of 12 months');
-                recommendations.push('Extremely low malignancy rate (only one borderline tumor in 2,870 cases)');
-            }
-            
-            // PCOS-specific recommendations
-            if (data.pcos) {
-                recommendations.push('PCOS with complex cysts: 5% prevalence in operative cohorts');
-                recommendations.push('10-fold higher subfertility risk and 2.5-fold higher chronic pelvic pain risk');
-                if (data.cysttype === 'endometrioma') {
-                    recommendations.push('PCOS + endometriosis: coordinate treatment for both conditions');
-                }
-            }
-            
-            // Complex cyst evaluation
-            recommendations.push('Consider tumor markers (CA-125, CEA, CA 19-9) for risk stratification');
-            recommendations.push('Apply IOTA Simple Rules or O-RADS for malignancy risk assessment');
-            break;
-    }
-
-    // Enhanced risk stratification based on research
-    if (type === 'complex-cyst') {
-        // IOTA Simple Rules and O-RADS assessment
-        let iotaScore = 0;
-        let oradsCategory = 'O-RADS 2'; // Benign
-        
-        if (data.cysttype === 'dermoid' && results.finalSize > 6) {
-            iotaScore += 2;
-            oradsCategory = 'O-RADS 3';
-        }
-        if (data.cysttype === 'mucinous' && results.finalSize > 10) {
-            iotaScore += 3;
-            oradsCategory = 'O-RADS 4';
-        }
-        if (data.cysttype === 'endometrioma') {
-            iotaScore += 1; // Lower risk for endometriomas
-            oradsCategory = 'O-RADS 2-3';
-        }
-        if (data.cysttype === 'septated') {
-            iotaScore += 0; // Very low risk for septated cysts
-            oradsCategory = 'O-RADS 2';
-        }
-        if (results.growthVelocityCmYear > 2) {
-            iotaScore += 4;
-            oradsCategory = 'O-RADS 5';
-        }
-        if (data.pcos && data.cysttype === 'endometrioma') {
-            iotaScore += 1; // Additional risk for PCOS + endometriosis
-        }
-        
-        riskStratification.push(`IOTA Score: ${iotaScore} (${iotaScore <= 2 ? 'Low risk' : iotaScore <= 4 ? 'Intermediate risk' : 'High risk'})`);
-        riskStratification.push(`O-RADS Category: ${oradsCategory}`);
-    }
-    
-    // Follow-up interval recommendations based on size and risk
-    if (results.finalSize < 5 && type !== 'complex-cyst') {
-        recommendations.push('Standard follow-up: 3-6 months initially, then annually if stable');
-    } else if (results.finalSize >= 5 && results.finalSize < 7) {
-        recommendations.push('Enhanced monitoring: follow-up every 3-6 months');
-    } else if (results.finalSize >= 7) {
-        recommendations.push('Close monitoring: follow-up every 2-3 months');
-    }
-
-    let html = `
-        <div class="clinical-recommendations">
-            <h4>Clinical Recommendations</h4>
-            <ul>
-    `;
-    
-    recommendations.forEach(rec => {
-        html += `<li>${rec}</li>`;
-    });
-    
-    html += `</ul></div>`;
-
-    // Risk stratification section
-    if (riskStratification.length > 0) {
-        html += `
-            <div class="risk-factors">
-                <h4>Risk Stratification</h4>
-                <ul>
-        `;
-        riskStratification.forEach(risk => {
-            html += `<li>${risk}</li>`;
-        });
-        html += `</ul></div>`;
-    }
-
-    if (warnings.length > 0) {
-        html += `<div class="warning">`;
-        warnings.forEach(warning => {
-            html += `<p><strong>⚠️ Warning:</strong> ${warning}</p>`;
-        });
-        html += `</div>`;
-    }
-
-    return html;
-} 
 
 // Initialize event listeners when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
@@ -3871,13 +3593,6 @@ document.addEventListener('DOMContentLoaded', function() {
     dynamicInputs = document.getElementById('dynamic-inputs');
     resultsSection = document.getElementById('results');
     calculatorForm = document.getElementById('calculatorForm');
-    
-    console.log('DOM elements initialized:', {
-        dynamicInputs: !!dynamicInputs,
-        resultsSection: !!resultsSection,
-        calculatorForm: !!calculatorForm
-    });
-    
     // Add click event listeners to growth type cards
     document.querySelectorAll('.growth-type-card').forEach(card => {
         card.addEventListener('click', function() {
@@ -3908,14 +3623,7 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             calculateGrowth();
         } catch (error) {
-            console.error('Error calculating growth:', error);
             alert('An error occurred while calculating. Please check your inputs and try again.');
         }
     });
-    
-
-    
-    console.log('Event listeners set up complete');
-}); 
-
-// Debugging functions removed - issue resolved
+});
