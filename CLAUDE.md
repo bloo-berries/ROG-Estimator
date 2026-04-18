@@ -16,7 +16,7 @@ README.md    — User-facing documentation with evidence tables
 ### script.js Organization
 1. **`scientificReferences`** (top) — PubMed-cited evidence for all calculations
 2. **`figoClassification`** — FIGO/PALM-COEIN fibroid type definitions
-3. **Risk calculators** — `calculateROMAScore()`, `calculateRMI()`, `assessIOTASimpleRules()`
+3. **Risk calculators** — `calculateROMAScore()`, `calculateRMI()`, `assessIOTASimpleRules()`, `calculateADNEXScore()`
 4. **Export/Print** — `exportResults()`, `printResults()`, `showNotification()`
 5. **`growthCalculators`** — Core calculation engines per mass type:
    - `endometrioma` — Li model integration, recurrence risk, treatment effects
@@ -44,22 +44,35 @@ README.md    — User-facing documentation with evidence tables
 | Topic | PMID | First Author |
 |-------|------|-------------|
 | Endometrioma natural history | 36902645 | Muzii L |
+| Endometrioma natural history (2024) | 38337178 | Knez J |
 | Endometriosis recurrence | 19279046 | Guo SW |
 | OCP recurrence prevention | 18241819 | Vercellini P |
+| Endometrioma treatment meta-analysis | 37944155 | Eberle A |
+| Dienogest for endometrioma | 39324359 | Huang Y |
 | Fibroid growth dynamics | 19047643 | Peddada SD |
 | Myomectomy recurrence | 25331441 | Bhave Chittawar P |
 | Fibroid race variation | 9397113 | Marshall LM |
+| GnRH antagonist fibroid meta-analysis | 39821450 | Sanchez Martin MJ |
+| Fibroid growth in pregnancy | 35981916 | Mitro SD |
 | Ovarian cyst natural history | 20096820 | Greenlee RT |
 | Postmenopausal cyst risk | 12962948 | Modesitt SC |
-| Dermoid growth rate | 9314922 | Caspi B |
+| Dermoid growth rate (1997) | 9314922 | Caspi B |
+| Dermoid growth rate (2010) | 20201114 | Hoo WL |
+| Dermoid malignant transformation | 39707031 | Jordan H |
 | Hemorrhagic cyst diagnosis | 15840791 | Patel MD |
 | O-RADS system | 31687921 | Andreotti RF |
+| O-RADS v2022 validation | 39604652 | Almalki YE |
+| O-RADS + CA-125 combined | 39344149 | Vo TQN |
+| ADNEX Phase 6 validation | 40653066 | Moro F |
+| ADNEX non-expert performance | 40283606 | Chankrachang A |
 | Adenomyosis progression | 38738458 | Borghese G |
 | MUSA consensus | 25652685 | Van den Bosch T |
+| MUSA subtypes & fertility | 41081491 | Wang L |
 | JZ thickness criteria | 8633139 | Reinhold C |
 | ROMA algorithm | 18851871 | Moore RG |
 | RMI index | 2223684 | Jacobs I |
 | IOTA Simple Rules | 18504770 | Timmerman D |
+| HE4 + CA-125 cutoffs | 39568971 | Kumari S |
 
 ## Development Notes
 
